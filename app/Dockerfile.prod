@@ -1,0 +1,31 @@
+# pull official base image
+FROM python:3.8-alpine
+
+# set work directory
+WORKDIR /usr/src/app
+
+RUN apk --update add \
+    curl \
+    gcc \
+    g++ \
+    musl-dev \
+    linux-headers \
+    build-base \
+    libffi-dev \
+    bash
+
+RUN apk --update add tzdata && \
+    cp /usr/share/zoneinfo/Asia/Tokyo /etc/localtime
+
+# set environment variables
+ENV PYTHONDONTWRITEBYTECODE 1
+ENV PYTHONUNBUFFERED 1
+ENV DJANGO_SETTINGS_MODULE dockerproject.settings
+
+# install dependencies
+RUN pip install --upgrade pip
+# COPY ../dockerproject/requirements.txt .
+RUN pip install -r requirements.txt
+
+# copy project
+COPY . .

@@ -1,0 +1,32 @@
+
+# pip show django-allauth
+
+# Django installation
+
+# if you using the anaconda, you should activate or deactivate <basic env>.
+# $> conda activate / deactivate
+
+# make venv > virtual env
+$> python3 -m venv <your_venv>
+
+# python3 manage.py migrate Create a DB for management.
+# Create migration file
+$> python3 manage.py makemigrations
+
+# Adapt migrations to database.
+$> python3 manage.py migrate
+
+# List migrations (by app/name)
+$> python3 manage.py showmigrations
+
+
+# Install superuser
+$> python3 manage.py createsuperuser
+$> python3 manage.py createsuperuser --username=admin --email=admin@email.com
+
+# Change superuser's password
+$ python3 manage.py changepassword admin
+
+
+# Create the application
+# python3 manage.py startapp XXXXXX
