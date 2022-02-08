@@ -14,7 +14,6 @@
   </component>
   <component name="NewModuleRootManager">
     <content url="file://$MODULE_DIR$">
-      <excludeFolder url="file://$MODULE_DIR$/app/dockerproject/venv" />
       <excludeFolder url="file://$MODULE_DIR$/dockerproject/venv" />
     </content>
     <orderEntry type="jdk" jdkName="Python 3.8 (django-vue)" jdkType="Python SDK" />
@@ -28,7 +27,7 @@
     <option name="TEMPLATE_CONFIGURATION" value="Jinja2" />
     <option name="TEMPLATE_FOLDERS">
       <list>
-        <option value="$MODULE_DIR$/app/dockerproject/templates" />
+        <option value="$MODULE_DIR$/dockerproject/templates" />
       </list>
     </option>
   </component>

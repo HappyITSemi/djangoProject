@@ -1,7 +1,7 @@
 from django.db import models
 from django.utils import timezone
 
-from dockerproject.users.admin import CustomUser
+from users.models import CustomUser
 
 
 class Category(models.Model):
@@ -19,6 +19,7 @@ class Category(models.Model):
 class Todo(models.Model):
     class Meta:
         managed = True
+        verbose_name_plural = 'Todo'
         db_table = 'todo'
 
     name = models.CharField(verbose_name='タイトル名', blank=False, max_length=32)  # null=DB, blank=Form,

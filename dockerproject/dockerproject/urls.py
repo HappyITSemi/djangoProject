@@ -1,4 +1,5 @@
 import os
+
 from django.contrib import admin
 from django.shortcuts import render
 from django.urls import include
@@ -20,6 +21,7 @@ urlpatterns = [
     path('', home, name="home"),
     path('home/', home, name="home"),
     path('admin/', admin.site.urls),
+    path('api/v1/', include('v1.urls')),
     path('todo/', include('todo.urls')),
     path('plot/', include('plot.urls')),
 ]

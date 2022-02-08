@@ -1,4 +1,4 @@
-
+# memo DJANGO_SETTINGS_MODULE=dockerproject.settings
 # pip show django-allauth
 
 # Django installation
