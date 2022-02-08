@@ -1,10 +1,9 @@
 #
 import debug_toolbar
-from django import views
 from django.template.defaulttags import url
 from django.urls import include
-
 from django.urls import path
+from . import views
 
 app_name = 'todo'
 urlpatterns = [
@@ -14,5 +13,5 @@ urlpatterns = [
     path('create_category/', views.TodoCreateView.as_view(), name='todo_create_category'),
     path('update/<int:pk>', views.TodoUpdateView.as_view(), name='todo_update'),
     path('delete/<int:pk>', views.TodoDeleteView.as_view(), name='todo_delete'),
-    url(r'^__debug__/', include(debug_toolbar.urls)),
+    # url(r'^__debug__/', include(debug_toolbar.urls)),
 ]

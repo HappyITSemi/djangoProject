@@ -24,21 +24,20 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
 
     'batch.apps.BatchConfig',
     'todo.apps.TodoConfig',
     'plot.apps.PlotConfig',
+    'user.apps.UserConfig',
+    'v1.apps.V1Config',
 
-    'django.contrib.sites',
-    'users',
-    'v1',
     'rest_framework',
-    'rest_framework.authtoken',
-    'rest_auth',
-    'allauth',
-    'allauth.account',
-    'rest_auth.registration',
-
+    # 'rest_framework.authtoken',
+    # 'rest_auth',
+    # 'allauth',
+    # 'allauth.account',
+    # 'rest_auth.registration',
 ]
 
 REST_FRAMEWORK = {
@@ -78,10 +77,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'dockerproject.wsgi.application'
-
-AUTH_USER_MODEL = 'user.CustomUser'
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-SITE_ID = 1
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
@@ -226,3 +221,7 @@ LOGGING = {
 # }
 
 DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
+
+AUTH_USER_MODEL = 'user.CustomUser'
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+SITE_ID = 1

@@ -4,12 +4,12 @@ import logging
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
-from django.views import generic
+
 from django.views.generic import CreateView
 from django.views.generic import DeleteView
 from django.views.generic import DetailView
+from django.views.generic import ListView
 from django.views.generic import UpdateView
-from django.views.generic.list import MultipleObjectMixin
 
 from .forms import TodoForm
 from .models import Category
@@ -19,7 +19,7 @@ logger = logging.getLogger(__name__)
 
 
 # @login_required()
-class TodoIndexView(generic.ListView, MultipleObjectMixin):
+class TodoIndexView(ListView):
     model = Todo
     template_name = 'todo/index.html'
     paginate_by = 3

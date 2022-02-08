@@ -19,7 +19,7 @@
             <div class="btn-group" role="group" aria-label="login-user">
                 <button type="button" class="btn btn-sm btn-success">User</button>
                 <button type="button" class="btn btn-sm btn-outline-success">
-                    {% if user.is_authenticated %}
+                    {% if user.is_authenticated != None %}
                         {{ user.get_username }}
                     {% else %}-
                     {% endif %}

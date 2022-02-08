@@ -5,7 +5,7 @@ from django.shortcuts import render
 from django.urls import include
 from django.urls import path
 
-from settings import BASE_DIR
+from .settings import BASE_DIR
 
 
 def home(request):
