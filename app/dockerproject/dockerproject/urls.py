@@ -1,13 +1,11 @@
 import os
 from django.contrib import admin
 from django.shortcuts import render
-from django.templatetags.static import static
 
 from django.urls import include
 from django.urls import path
 
-from dockerproject import settings
-from dockerproject.settings import BASE_DIR
+from app.dockerproject.dockerproject.settings import BASE_DIR
 
 
 def home(request):

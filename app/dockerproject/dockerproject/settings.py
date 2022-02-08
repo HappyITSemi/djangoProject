@@ -35,6 +35,8 @@ INSTALLED_APPS = [
 
 ]
 
+AUTH_USER_MODEL = 'users.CustomUser'
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -211,6 +213,5 @@ LOGGING = {
 #     ]
 # }
 
-AUTH_USER_MODEL = 'users.CustomUser'
 DEFAULT_AUTO_FIELD='django.db.models.AutoField'
 

@@ -3,8 +3,7 @@ from django.db import models
 from django.db.models import *
 from django.utils import timezone
 
-# from DjangoAPI.DjangoAPI.accounts.models import CustomUser
-from users.models import CustomUser
+from app.dockerproject.users.models import CustomUser
 
 
 class Category(models.Model):

@@ -1,6 +1,6 @@
 from django.urls import path
 
-from plot import views
+from app.dockerproject.plot import views
 
 app_name = 'plot'
 urlpatterns = [

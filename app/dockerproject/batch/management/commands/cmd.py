@@ -7,7 +7,7 @@ import subprocess
 from subprocess import PIPE
 
 from django.core.management import BaseCommand
-from dockerproject.settings import BASE_DIR
+from app.dockerproject.dockerproject.settings import BASE_DIR
 
 
 class Command(BaseCommand):

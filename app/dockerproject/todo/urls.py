@@ -4,7 +4,7 @@ from django.template.defaulttags import url
 from django.urls import include
 from django.urls import path
 
-from todo import views
+from app.dockerproject.todo import views
 
 app_name = 'todo'
 urlpatterns = [

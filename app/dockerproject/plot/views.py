@@ -6,19 +6,20 @@
 # pip3 install scipy
 # pip3 install pillow
 # pip3 install django-imagekit
-
+import os
 import logging
 
 import cv2
 from django.views.generic import TemplateView
-from dockerproject.settings import MEDIA_ROOT
+from app.dockerproject.dockerproject.settings import MEDIA_ROOT
+from app.dockerproject.dockerproject.settings import BASE_DIR
 
 # logger = logging.getLogger(__name__)
 logger = logging.getLogger("log_file")
 
 
 def recognize_face(input_pic, output_pic):
-    work_path = MEDIA_ROOT + '/images/'
+    work_path = os.path.join(BASE_DIR, MEDIA_ROOT, 'images')
     in_pic = work_path + input_pic
     out_pic = work_path + output_pic
     logger.warning(in_pic)
@@ -30,14 +31,14 @@ def recognize_face(input_pic, output_pic):
 class PlotIndexView(TemplateView):
     template_name = 'plot/index.html'
 
-    imagePath = MEDIA_ROOT + '/images/'
-    img1 = cv2.imread(MEDIA_ROOT + '/akb48_7.png')
+    imagePath = os.path.join(BASE_DIR, MEDIA_ROOT, 'images')
+    img1 = cv2.imread(os.path.join(imagePath, 'akb48_7.png'))
 
     recognize_face('in_48.png', 'out_48.pic')
     logger.warning('--- recognized --- ')
 
-    cv2.imwrite(imagePath + 'output.jpg', img1)  # そのまま、ファイル出力
-    gry_img = cv2.imread(MEDIA_ROOT + '/akb48_7.png', 0)
+    cv2.imwrite('output.jpg', img1)  # そのまま、ファイル出力
+    gry_img = cv2.imread(os.path.join(imagePath, '/akb48_7.png'), 0)
     cv2.imwrite(imagePath + 'gray.jpg', gry_img)  # グレイスケール・ファイル出力
     canny_img = cv2.Canny(gry_img, 50, 110)  # 第2,3引数は閾値
     cv2.imwrite(imagePath + 'bw.jpg', canny_img)  # 白黒・エッジ
@@ -64,7 +65,7 @@ class PlotIndexView(TemplateView):
     # 信頼性のパラメータ。検出器が検出する箇所が重複するので、より重複が多い部分が信頼性が高いこととなり、その閾値を設定します。値が大きくなるにつれて信頼性が上がるが、顔を見逃してしまう率も高くなる。
     # minSize ：
     # 物体が取り得る最小サイズ。これよりも小さい物体は無視される。
-    # img = cv2.cvtColor(img1, cv2.COLOR_RGB2BGR)  # RGBからBGRに変換
+    img = cv2.cvtColor(img1, cv2.COLOR_RGB2BGR)  # RGBからBGRに変換
     cv2.imwrite(imagePath + 'face.jpg', img1)
 
     # cv2.imshow('Window Name', img1)

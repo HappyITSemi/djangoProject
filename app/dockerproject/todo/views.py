@@ -9,9 +9,9 @@ from django.views.generic import CreateView, UpdateView, ListView, DetailView, D
 from django.views import generic
 from django.views.generic.list import MultipleObjectMixin
 
-from todo.forms import TodoForm
-from todo.models import Category
-from todo.models import Todo
+from app.dockerproject.todo.forms import TodoForm
+from app.dockerproject.todo.models import Category
+from app.dockerproject.todo.models import Todo
 
 logger = logging.getLogger(__name__)
 
@@ -49,8 +49,8 @@ class TodoCreateView(LoginRequiredMixin, CreateView):
 
     def form_valid(self, form):
         todo = form.save(commit=False)
-        todo.users = self.request.users  # Login-userをセットする
-        print(self.request.users)
+        todo.user = self.request.user  # Login-userをセットする
+        print(self.request.user)
         todo.save()
         messages.success(self.request, 'Todoを新規作成しました。')
         return super().form_valid(form)
