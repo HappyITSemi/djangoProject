@@ -20,6 +20,7 @@ def home(request):
 urlpatterns = [
     path('', home, name="home"),
     path('home/', home, name="home"),
+    path("accounts/", include("allauth.urls")),
     path('admin/', admin.site.urls),
     path('api/v1/', include('v1.urls')),
     path('todo/', include('todo.urls')),

@@ -26,17 +26,20 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.sites',
 
+    'accounts.apps.AccountsConfig',
     'batch.apps.BatchConfig',
     'todo.apps.TodoConfig',
     'plot.apps.PlotConfig',
     'user.apps.UserConfig',
     'v1.apps.V1Config',
 
-    'rest_framework',
+    # 'rest_framework',
     # 'rest_framework.authtoken',
     # 'rest_auth',
-    # 'allauth',
-    # 'allauth.account',
+    'allauth',
+    'allauth.account',
+    'social_django',
+    # "allauth.socialaccount",
     # 'rest_auth.registration',
 ]
 
@@ -56,6 +59,11 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+]
+
+AUTHENTICATION_BACKENDS = [
+    "django.contrib.auth.backends.ModelBackend",
+    "allauth.account.auth_backends.AuthenticationBackend",
 ]
 
 ROOT_URLCONF = 'dockerproject.urls'
@@ -222,6 +230,27 @@ LOGGING = {
 
 DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 
-AUTH_USER_MODEL = 'user.CustomUser'
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+# AUTH_USER_MODEL = 'user.CustomUser'
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
 SITE_ID = 1
+
+AUTH_USER_MODEL = "accounts.CustomUser"
+ACCOUNT_FORMS = {
+    "signup": "accounts.forms.CustomUserCreationForm",
+}
+
+# サインアップ機能の実装
+ACCOUNT_ADAPTER = 'accounts.adapter.AccountAdapter'
+
+# サインアップ・ログイン・ログアウト時のリダイレクト先URL
+LOGIN_REDIRECT_URL = "/home"  # "/"が抜けると相対パス扱いになるので注意
+ACCOUNT_LOGOUT_REDIRECT_URL = "/accounts/login/"
+
+# 認証方式の設定。今回はメールアドレスとパスワード
+ACCOUNT_AUTHENTICATION_METHOD = "email"
+ACCOUNT_USERNAME_REQUIRED = False  # ユーザー名を登録するかどうか。サインアップ画面でユーザー名を要求するかどうかはこの変数の切り替えのみで決まる。
+
+# ユーザー登録時のメールアドレス認証(none=送信しない、mandatory=送信する)
+ACCOUNT_EMAIL_VERIFICATION = "none"
+ACCOUNT_EMAIL_REQUIRED = True
