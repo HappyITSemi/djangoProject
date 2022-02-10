@@ -1,6 +1,24 @@
+from allauth.account.forms import SignupForm
+from django import forms
 from django.contrib.auth import get_user_model
+from django.contrib.auth.forms import UserChangeForm
+from django.contrib.auth.forms import UserCreationForm
 
-from django.contrib.auth.forms import UserCreationForm, UserChangeForm
+from .models import CustomUser
+
+
+class CustomSignupForm(SignupForm):
+    age = forms.IntegerField()
+    weight = forms.IntegerField()
+
+    class Meta:
+        model = CustomUser
+
+    def signup(self, request, user):
+        user.age = self.cleaned_data['age']
+        user.weight = self.cleaned_data['weight']
+        user.save()
+        return user
 
 
 class CustomUserCreationForm(UserCreationForm):
@@ -11,16 +29,14 @@ class CustomUserCreationForm(UserCreationForm):
 
     class Meta:
         model = get_user_model()
-        fields = ["username", "email", "age"]  # passwordは設定しない
+        fields = ["username", "email"]  # passwordは設定しない
         labels = {
             "username": "ユーザー名",
             "email": "メールアドレス",
-            "age": "年齢",
         }
         help_texts = {
             "username": "",
             "email": "",
-            "age": "",
         }
 
 
@@ -31,14 +47,12 @@ class CustomUserChangeForm(UserChangeForm):
 
     class Meta:
         model = get_user_model()
-        fields = ["username", "email", "age"]  # passwordは設定しない
+        fields = ["username", "email"]  # passwordは設定しない
         labels = {
             "username": "ユーザー名",
             "email": "メールアドレス",
-            "age": "年齢",
         }
         help_texts = {
             "username": "",
             "email": "",
-            "age": "",
         }

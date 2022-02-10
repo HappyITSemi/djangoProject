@@ -1,22 +1,59 @@
-from django.contrib.auth.models import User
+#
+from django.contrib.auth import login
 from django.shortcuts import render
+from django.urls import reverse_lazy
+from django.views.generic import CreateView
+from django.views.generic import TemplateView
 
-from accounts.forms import CustomUserChangeForm
+from .forms import SignupForm
 
 
-def home(request):
-    return render(request, "accounts/home.html")
+def top(request):
+    return render(request, 'accounts/login.html')
 
 
-def edit(request, pk):
-    target_user = User.objects.filter(id=pk).first()
-    if request.method == "GET":
-        form = CustomUserChangeForm(instance=target_user)
-        return render(request, "accounts/edit.html", {"target_user": target_user})
-    elif request.method == POST:
-        form = CustomUserChangeForm(request.POST, instance=target_user)
-        if form.is_valid:
-            form.save()
-            return render(request, "home.html")
-        else:
-            return render(request, "accounts/edit.html", {"target_user": target_user})
+class LoginView(TemplateView):
+    template_name = 'accounts/login.html'
+
+
+class LogoutView(TemplateView):
+    template_name = 'accounts/logout.html'
+
+
+class PasswordChangeView(TemplateView):
+    pass
+
+
+class PasswordChangeDoneView(TemplateView):
+    pass
+
+
+class PasswordResetView(TemplateView):
+    pass
+
+
+class PasswordResetDoneView(TemplateView):
+    pass
+
+
+class PasswordResetConfirmView(TemplateView):
+    pass
+
+
+class PasswordResetCompleteView(TemplateView):
+    pass
+
+
+class SignupView(CreateView):
+    template_name = 'accounts/signup.html'
+    form_class = SignupForm
+    success_url = reverse_lazy('home')
+
+    def form_valid(self, form):
+        valid = super().form_valid(form)
+        login(self.request, self.object)
+        return valid
+
+
+class ProfileUpdateView(TemplateView):
+    pass

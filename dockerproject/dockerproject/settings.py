@@ -1,16 +1,8 @@
 import os
 from pathlib import Path
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'n+9b8t^6=9j7(gvn)-a4k&-)48+3ad=#ikg*^p+9x$qh5+(zej'
-
-# SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
@@ -36,11 +28,11 @@ INSTALLED_APPS = [
     # 'rest_framework',
     # 'rest_framework.authtoken',
     # 'rest_auth',
+    # 'rest_auth.registration',
     'allauth',
     'allauth.account',
-    'social_django',
-    # "allauth.socialaccount",
-    # 'rest_auth.registration',
+    # 'social_django',
+    'allauth.socialaccount',
 ]
 
 REST_FRAMEWORK = {
@@ -60,10 +52,9 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
-
 AUTHENTICATION_BACKENDS = [
-    "django.contrib.auth.backends.ModelBackend",
-    "allauth.account.auth_backends.AuthenticationBackend",
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
 ]
 
 ROOT_URLCONF = 'dockerproject.urls'
@@ -79,6 +70,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                # `allauth` needs this from django
+                'django.template.context_processors.request',
             ],
         },
     },
@@ -113,6 +106,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
     {
         'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+        'OPTIONS': {"min_length": 4},
     },
     {
         'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
