@@ -21,27 +21,37 @@ class LogoutView(TemplateView):
 
 
 class PasswordChangeView(TemplateView):
-    pass
+    template_name = 'accounts/password_change_form.html'
+    success_url = reverse_lazy('accounts:password_change_done')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)  # 継承元のメソッドCALL
+        context["form_name"] = "password_change"
+        return context
 
 
 class PasswordChangeDoneView(TemplateView):
-    pass
+    template_name = 'accounts/password_change_done.html'
 
 
 class PasswordResetView(TemplateView):
-    pass
+    template_name = 'accounts/password_reset_form.html'
+    subject_template_name = 'accounts/mail_template/reset/subject.txt'
+    email_template_name = 'accounts/mail_template/reset/message.txt'
+    success_url = reverse_lazy('accounts:password_reset_done')
 
 
 class PasswordResetDoneView(TemplateView):
-    pass
+    template_name = 'accounts/password_reset_done.html'
 
 
 class PasswordResetConfirmView(TemplateView):
-    pass
+    template_name = 'accounts/password_reset_confirm.html'
+    success_url = reverse_lazy('accounts:password_reset_complete')
 
 
 class PasswordResetCompleteView(TemplateView):
-    pass
+    template_name = 'accounts/password_reset_complete.html'
 
 
 class SignupView(CreateView):
@@ -53,6 +63,18 @@ class SignupView(CreateView):
         valid = super().form_valid(form)
         login(self.request, self.object)
         return valid
+
+
+class SignupClosed(TemplateView):
+    template_name = 'accounts/signup_closed.html'
+
+
+class VerificationSent(TemplateView):
+    template_name = 'accounts/verification_sent.html'
+
+
+class VerifiedEmailRequired():
+    template_name = 'verified_email?required.html'
 
 
 class ProfileUpdateView(TemplateView):

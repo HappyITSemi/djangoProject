@@ -4,9 +4,10 @@
 # python3 manage.py java_cmd
 
 import subprocess
+
 from django.core.management import BaseCommand
-from dockerproject.settings import BASE_DIR
-from subprocess import PIPE
+
+from dockerproject.dockerproject.settings import BASE_DIR
 
 
 class Command(BaseCommand):

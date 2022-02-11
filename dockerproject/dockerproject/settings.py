@@ -238,7 +238,7 @@ ACCOUNT_FORMS = {
 ACCOUNT_ADAPTER = 'accounts.adapter.AccountAdapter'
 
 # サインアップ・ログイン・ログアウト時のリダイレクト先URL
-LOGIN_REDIRECT_URL = "/home"  # "/"が抜けると相対パス扱いになるので注意
+LOGIN_REDIRECT_URL = "home"  # "/"が抜けると相対パス扱いになるので注意
 ACCOUNT_LOGOUT_REDIRECT_URL = "/accounts/login/"
 
 # 認証方式の設定。今回はメールアドレスとパスワード
