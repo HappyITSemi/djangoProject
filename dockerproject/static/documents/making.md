@@ -40,7 +40,7 @@ $ python3 manage.py changepassword admin
 
 # python3 manage.py startapp XXXXXX
 ---------------------------------------
-git fetch origin git reset --hard origin/master
+git fetch main git reset --hard origin/master
 
 - - - - - - - - - - - - - - - - - - - - -
 Priorityを選択して切り替える方法 sudo apt install -y software-properties-common

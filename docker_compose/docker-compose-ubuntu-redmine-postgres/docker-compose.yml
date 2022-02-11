@@ -1,0 +1,48 @@
+version: '3'
+services:
+  ubuntu:
+    restart: always
+    image: ubuntu:latest
+    container_name: ubuntu
+    volumes:
+      - ./storage/home_data:/home
+    links:
+      - postgres:postgres
+      - redmine:redmine
+  redmine:
+    restart: always
+    image: redmine:latest
+    container_name: redmine
+    ports:
+      - 9200:3000
+    environment:
+      POSTGRES_PORT_5432_TCP: postgres
+      POSTGRES_ENV_POSTGRES_USER: redmine
+      POSTGRES_ENV_POSTGRES_PASSWORD: password
+      POSTGRES_ENV_POSTGRES_DB: redmine
+    volumes:
+      - ./storage/redmine_data:/usr/src/redmine/files
+    depends_on:
+      - postgres
+    links:
+      - "postgres:postgres"
+    networks:
+      - default
+  postgres:
+    restart: always
+    image: postgres:latest
+    container_name: postgres
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_PASSWORD: password
+      POSTGRES_USER: redmine
+    volumes:
+      - ./storage/postgres_data:/var/lib/postgresql/data
+volumes:
+  home_data:
+    driver: local
+  redmine_data:
+    driver: local
+  postgres_data:
+    driver: local

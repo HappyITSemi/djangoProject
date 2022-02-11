@@ -1,0 +1,12 @@
+version: '2'
+services:
+  ubuntu:
+    restart: always
+    image: ubuntu:latest
+    container_name: ubuntu
+    volumes:
+      - ./home_data:/home
+volumes:
+  home_data:
+    driver: local
+
