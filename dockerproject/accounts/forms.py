@@ -1,5 +1,4 @@
 from allauth.account.forms import SignupForm
-from django import forms
 from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import UserChangeForm
 from django.contrib.auth.forms import UserCreationForm
@@ -8,15 +7,15 @@ from .models import CustomUser
 
 
 class CustomSignupForm(SignupForm):
-    age = forms.IntegerField()
-    weight = forms.IntegerField()
+    # age = forms.IntegerField()
+    # weight = forms.IntegerField()
 
     class Meta:
         model = CustomUser
 
     def signup(self, request, user):
-        user.age = self.cleaned_data['age']
-        user.weight = self.cleaned_data['weight']
+        user.username = self.cleaned_data['username']
+        user.email = self.cleaned_data['email']
         user.save()
         return user
 

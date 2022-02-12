@@ -7,12 +7,13 @@
 # pip3 install pillow
 # pip3 install django-imagekit
 
-import cv2
 import logging
-from django.views.generic import TemplateView
-from dockerproject.settings import MEDIA_ROOT
 
-# logger = logging.getLogger(__name__)
+import cv2
+from django.views.generic import TemplateView
+
+from djangoProject.djangoProject.settings import MEDIA_ROOT
+
 logger = logging.getLogger("log_file")
 
 

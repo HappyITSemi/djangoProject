@@ -8,6 +8,10 @@ from django.views.generic import TemplateView
 from .forms import SignupForm
 
 
+def home(request):
+    return render(request, "accounts/login.html")
+
+
 def top(request):
     return render(request, 'accounts/login.html')
 

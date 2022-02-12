@@ -18,14 +18,25 @@ def home(request):
 
 # comment-out path('admin/', admin.site.urls)
 urlpatterns = [
-                  path('', home, name='root'),
-                  path('home/', home, name='home'),
+                  path('', home, name='home'),
+
+                  # path("accounts/", include("allauth.urls")),
+                  path("accounts/", include("accounts.urls")),
+                  path('auth/', include('auth.urls')),
+                  # path('auth/', include('accounts.urls')),
+
                   path('todo/', include('todo.urls')),
                   path('admin/', admin.site.urls),
-                  path('auth/', include('allauth.urls')),
-                  path('accounts/', include('accounts.urls')),
                   path('plot/', include('plot.urls')),
                   path('api/v1/', include('v1.urls')),
+
+                  # path('admin/password_reset/', auth_views.PasswordResetView.as_view(), name='admin_password_reset'),
+                  # path('admin/password_reset/done/', auth_views.PasswordResetDoneView.as_view(),
+                  #      name='password_reset_done'),
+                  # path('reset/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(),
+                  #      name='password_reset_confirm'),
+                  # path('reset/done/', auth_views.PasswordResetCompleteView.as_view(), name='password_reset_complete'),
+
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 if settings.DEBUG:

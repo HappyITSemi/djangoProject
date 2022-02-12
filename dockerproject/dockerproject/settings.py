@@ -248,3 +248,5 @@ ACCOUNT_USERNAME_REQUIRED = False  # ユーザー名を登録するかどうか�
 # ユーザー登録時のメールアドレス認証(none=送信しない、mandatory=送信する)
 ACCOUNT_EMAIL_VERIFICATION = "none"
 ACCOUNT_EMAIL_REQUIRED = True
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
