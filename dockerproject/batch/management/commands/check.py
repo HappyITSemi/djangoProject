@@ -4,6 +4,10 @@
 # working Directory = Project Directory
 # PUSH insect at the Top
 # python manage.py check -period 2021-03 -dir media/outdata -file abc.csv
+# Crontab
+# m h  dom mon dow   command
+# 0 4 * * * /home/mysite/venv/bin/python /home/mysite/mysite/manage.py my_custom_command
+
 import logging
 
 from django.core.management import BaseCommand

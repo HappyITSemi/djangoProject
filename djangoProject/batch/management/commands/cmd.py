@@ -4,10 +4,11 @@
 # python3 manage.py java_cmd
 
 import subprocess
+from pathlib import Path
 
 from django.core.management import BaseCommand
 
-from dockerproject.dockerproject.settings import BASE_DIR
+BASE_DIR = Path(__file__).resolve().parent.parent
 
 
 class Command(BaseCommand):
@@ -16,7 +17,7 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         _cmd = 'python3 manage.py shell '
-        args = "--version > " + BASE_DIR + '/media/outdata/shell_stdout_file.txt'
+        args = "--version > " + str(BASE_DIR) + '/media/outdata/shell_stdout_file.txt'
         cmd = _cmd + args
         print(cmd)
 
