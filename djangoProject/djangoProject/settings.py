@@ -25,11 +25,18 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'accounts.apps.AccountsConfig',
+    'dashboard.apps.DashboardConfig',
+
     'batch.apps.BatchConfig',
     'todo.apps.TodoConfig',
     'plot.apps.PlotConfig',
-
     'v1.apps.V1Config',
+
+    'allauth',
+    'allauth.account',
+    # 'social_django',
+    'allauth.socialaccount',
 ]
 
 MIDDLEWARE = [
@@ -138,3 +145,23 @@ if DEBUG:
     INSTALLED_APPS += ('debug_toolbar',)
     MIDDLEWARE += ('debug_toolbar.middleware.DebugToolbarMiddleware',)
     DEBUG_TOOLBAR_CONFIG = {'SHOW_TOOLBAR_CALLBACK': show_toolbar, }
+
+SITE_ID = 1
+AUTH_USER_MODEL = 'accounts.CustomUser'
+
+AUTHENTICATION_BACKENDS = (
+    'allauth.account.auth_backends.AuthenticationBackend',  # 一般ユーザー用(メールアドレス認証)
+    'django.contrib.auth.backends.ModelBackend',  # 管理サイト用(ユーザー名認証)
+)
+
+ACCOUNT_AUTHENTICATION_METHOD = 'email'  # メールアドレス認証に変更する設定
+ACCOUNT_USERNAME_REQUIRED = False  # サインナップ、ログイン時のユーザーネーム認証をキャンセル
+
+ACCOUNT_EMAIL_VERIFICATION = 'mandatory'  # サインアップにメールアドレス確認を使用
+ACCOUNT_EMAIL_REQUIRED = True
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'  # ローカルでの開発のためメールをコンソールで表示する
+
+LOGIN_REDIRECT_URL = 'dashboard:home'  # ログイン成功後の遷移先の指定
+ACCOUNT_LOGOUT_REDIRECT_URL = 'dashboard:welcome'  # ログアウト成功後の遷移先の指定
+ACCOUNT_LOGOUT_ON_GET = True  # 確認を行わずログアウトする設定
