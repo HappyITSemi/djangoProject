@@ -16,6 +16,11 @@ from django.core.management import BaseCommand
 
 
 class Command(BaseCommand):
+    help = '[Usage] python manage.py rest -get get, or -post post'
+
+    def add_arguments(self, parser):
+        parser.add_argument('-get', type=str)
+        parser.add_argument('-post', type=str)
 
     def __init__(self, stdout=None, stderr=None, no_color=False, force_color=False):
         super().__init__(stdout, stderr, no_color, force_color)
@@ -32,26 +37,27 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
 
-        res_get = requests.get(url=self.url_test_get,
-                               params=self.params,
-                               headers=self.headers)
+        if options['get'] == 'get':
+            res_get = requests.get(url=self.url_test_get,
+                                   params=self.params,
+                                   headers=self.headers)
 
-        # res_sample = requests.get(url=self.url_test_get, params=self.params, headers=self.headers)
-        print('--- get ---')
-        pprint.pprint(res_get.json())
+            print('--- get argument--->')
+            pprint.pprint(res_get.json())
 
-        print('--- post ---')
-        res_post = requests.post(url=self.url_test_post,
-                                 json=json.dumps(self.params),
-                                 headers=self.headers)
+        elif options['post'] == 'post':
+            print('--- post data--->')
+            res_post = requests.post(url=self.url_test_post,
+                                     json=json.dumps(self.params),
+                                     headers=self.headers)
 
-        pprint.pprint(res_post.json())
+            pprint.pprint(res_post.json())
 
-        print(res_post.json()['json'])
-        print('--- post end---')
+            print(res_post.json()['json'])
+            print('--- post end---')
 
-        print('json=', type(res_post.json()['json']))
-        print('headers=', type(res_post.json()['headers']))
+            print('json=', type(res_post.json()['json']))
+            print('headers=', type(res_post.json()['headers']))
 
     def get_auth(self=None):
         if self == 'test':

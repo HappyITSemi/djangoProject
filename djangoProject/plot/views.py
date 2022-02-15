@@ -20,9 +20,8 @@ logger = logging.getLogger("log_file")
 
 
 def recognize_face(input_pic, output_pic):
-    work_path = os.path.join(BASE_DIR, 'media', 'images')
-    in_pic = work_path + input_pic
-    out_pic = work_path + output_pic
+    in_pic = os.path.join(BASE_DIR, 'media', 'images', input_pic)
+    out_pic = os.path.join(BASE_DIR, 'media', 'images', output_pic)
     logger.warning(in_pic)
     logger.warning(out_pic)
     return
@@ -36,7 +35,6 @@ class PlotIndexView(TemplateView):
     img1 = cv2.imread(os.path.join(BASE_DIR, 'media', 'akb48_7.png'))
 
     recognize_face('in_48.png', 'out_48.pic')
-    logger.warning('--- recognized --- ')
 
     cv2.imwrite(imagePath + 'output.jpg', img1)  # そのまま、ファイル出力
     gry_img = cv2.imread(os.path.join(BASE_DIR, 'media', 'akb48_7.png'), 0)
@@ -46,8 +44,8 @@ class PlotIndexView(TemplateView):
 
     # 分類器の読込
     # https://github.com/opencv/opencv/tree/master/data/haarcascades
-    face_path = os.path.join(BASE_DIR, 'media', 'opencv_data/haarcascades/')
-    cascade_path = face_path + 'haarcascade_frontalface_default.xml'
+    face_path = os.path.join(BASE_DIR, 'media', 'opencv_data', 'haarcascades')
+    cascade_path = os.path.join(face_path, 'haarcascade_frontalface_default.xml')
     print(cascade_path)
 
     # カスケード検出器の特徴量を取得する

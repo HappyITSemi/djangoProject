@@ -27,6 +27,8 @@ INSTALLED_APPS = [
 
     'accounts.apps.AccountsConfig',
     'dashboard.apps.DashboardConfig',
+    'django.contrib.sites',
+    'django.contrib.redirects',
 
     'batch.apps.BatchConfig',
     'todo.apps.TodoConfig',
@@ -35,7 +37,7 @@ INSTALLED_APPS = [
 
     'allauth',
     'allauth.account',
-    # 'social_django',
+    'social_django',
     'allauth.socialaccount',
 ]
 
@@ -47,6 +49,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    'django.contrib.redirects.middleware.RedirectFallbackMiddleware',
 ]
 
 ROOT_URLCONF = 'djangoProject.urls'
@@ -137,14 +141,14 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # pip3 install django-debug-toolbar
 #
-if DEBUG:
-    def show_toolbar(request):
-        return True
-
-
-    INSTALLED_APPS += ('debug_toolbar',)
-    MIDDLEWARE += ('debug_toolbar.middleware.DebugToolbarMiddleware',)
-    DEBUG_TOOLBAR_CONFIG = {'SHOW_TOOLBAR_CALLBACK': show_toolbar, }
+# if DEBUG:
+#     def show_toolbar(request):
+#         return True
+#
+#
+#     INSTALLED_APPS += ('debug_toolbar',)
+#     MIDDLEWARE += ('debug_toolbar.middleware.DebugToolbarMiddleware',)
+#     DEBUG_TOOLBAR_CONFIG = {'SHOW_TOOLBAR_CALLBACK': show_toolbar, }
 
 SITE_ID = 1
 AUTH_USER_MODEL = 'accounts.CustomUser'
@@ -162,6 +166,49 @@ ACCOUNT_EMAIL_REQUIRED = True
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'  # ローカルでの開発のためメールをコンソールで表示する
 
-LOGIN_REDIRECT_URL = 'dashboard:home'  # ログイン成功後の遷移先の指定
-ACCOUNT_LOGOUT_REDIRECT_URL = 'dashboard:welcome'  # ログアウト成功後の遷移先の指定
-ACCOUNT_LOGOUT_ON_GET = True  # 確認を行わずログアウトする設定
+LOGIN_REDIRECT_URL = 'home'  # ログイン成功後の遷移先の指定
+ACCOUNT_LOGOUT_REDIRECT_URL = 'home'  # ログアウト成功後の遷移先の指定
+ACCOUNT_LOGOUT_ON_GET = False  # 確認を行わずログアウトする設定
+
+# ロギング設定
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'standard': {
+            'format': "[%(asctime)s] %(levelname)s [%(name)s:%(lineno)s] %(message)s",
+            'datefmt': "%d/%b/%Y %H:%M:%S"
+        },
+    },
+    'handlers': {
+        'file': {
+            'level': 'INFO',
+            'class': 'logging.handlers.RotatingFileHandler',
+            'filename': 'debug.log',
+            'maxBytes': 50000,
+            'backupCount': 2,
+            'formatter': 'standard',
+        },
+        'console': {
+            'level': 'INFO',
+            'class': 'logging.StreamHandler',
+            'formatter': 'standard'
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['file', 'console'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+        'todo': {
+            'handlers': ['console'],
+            'level': 'DEBUG',
+        },
+        'plot': {
+            'handlers': ['console'],
+            'level': 'DEBUG',
+        },
+    },
+}
+

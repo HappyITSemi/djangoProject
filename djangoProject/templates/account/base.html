@@ -54,7 +54,7 @@
                         　Batch</a>
                 {% endblock %}
 
-                <a href="#" class="list-group-item list-group-item-action">
+                <a href="{% url 'plot:plot_index' %}" class="list-group-item list-group-item-action">
                     <img src="{% static 'bootstrap-icons/icons/diagram-3.svg' %}" alt="" width="24" height="24"/>
                     　画像処理</a>
                 <a href="#" class="list-group-item list-group-item-secondary">
@@ -63,8 +63,8 @@
                 <a href="#" class="list-group-item list-group-item-secondary">
                     <img src="{% static 'bootstrap-icons/icons/envelope.svg' %}" alt="" width="24" height="24"/>
                     　Lambda</a>
-                <a role="button" class="btn  btn-sm btn-outline-primary" href="/auth/login/">ログイン</a>
-                <a role="button" class="btn  btn-sm btn-outline-secondary" href="/auth/logout/">ログアウト</a>
+                <a role="button" class="btn  btn-sm btn-outline-primary" href="/accounts/login/">ログイン</a>
+                <a role="button" class="btn  btn-sm btn-outline-secondary" href="/accounts/logout/">ログアウト</a>
             </div>
 
             <hr>

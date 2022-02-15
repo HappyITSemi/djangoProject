@@ -12,14 +12,15 @@
     <div class="container-fluid">
         <a class="navbar-brand" href="{% url 'home' %}">Django Lesson</a>
         <form class="d-flex">
-                {% if user.is_authenticated != False %}
-                    <button type="button" class="btn btn-sm btn-success">User</button>
-                    <button type="button" class="btn btn-sm btn-outline-success">
+            <div class="btn-group" role="group" aria-label="login-user">
+                <button type="button" class="btn btn-sm btn-success">LoginUser</button>
+                <button type="button" class="btn btn-sm btn-outline-success">
+                    {% if user.is_authenticated != None %}
                         {{ user.get_username }}
-                    </button>　
-                {% else %}
-                    <a role="button" class="btn btn-sm btn-success" href="{% url 'account_login' %}">Login</a>　
-                {% endif %}
+                    {% else %}-
+                    {% endif %}
+                </button>
+            </div>
             <div class="d-flex justify-content-end">
                 <input class="form-control mr-3" type="search" placeholder="検索ワードの入力" aria-label="検索">
                 <button class="btn btn-outline-success" type="submit">Search</button>
@@ -77,30 +78,11 @@
 
         </div>
         {% block content %}
-            <div class="col-lg-7 border order-2">
+            <div class="col-lg-10 border order-2">
                 センター・コンテンツ
             </div>
         {% endblock %}
-        <div class="col-lg-3 order-3">
-            <div class="card" style="width: 18rem;">
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item">情報1</li>
-                    <li class="list-group-item">情報2</li>
-                    <li class="list-group-item">
-                        <div class="card">
-                            <div class="card-header">
-                                ヘッダー Todo-Base-Template
-                            </div>
-                            <div class="card-body">
-                                <h5 class="card-title">タイトル</h5>
-                                <p class="card-text">説明文</p>
-                                <a href="#" class="btn btn-primary">リンク先ボタン</a>
-                            </div>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-        </div>
+
     </div>
 </div>
 <div>　
@@ -108,7 +90,7 @@
 <div class="border g-2">
     <div class="border">
         <div class="row justify-content-md-center">
-            &copy2022 Toshio Nakashima
+            &copy2020 Toshio Nakashima
         </div>
     </div>
 </div>

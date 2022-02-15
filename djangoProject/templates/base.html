@@ -19,11 +19,12 @@
             <div class="d-flex justify-content-end">
                 {% if user.is_authenticated != False %}
                     <button type="button" class="btn btn-sm btn-success">User</button>
-                    {{ user.get_username }}
+                    <button type="button" class="btn btn-sm btn-outline-success">
+                        {{ user.get_username }}
+                    </button>　
                 {% else %}
-                    <button type="button" class="btn btn-sm btn-success">Login</button>
+                    <a role="button" class="btn btn-sm btn-success" href="{% url 'account_login' %}">Login</a>　
                 {% endif %}
-                </button>
                 <input class="form-control mr-3" type="search" placeholder="検索ワードの入力" aria-label="検索"/>
                 <button class="btn btn-outline-success" type="submit">Search</button>
             </div>
@@ -52,7 +53,7 @@
                         　Batch</a>
                 {% endblock %}
 
-                <a href="#" class="list-group-item list-group-item-action">
+                <a href="{% url 'plot:plot_index' %}" class="list-group-item list-group-item-action">
                     <img src="{% static 'bootstrap-icons/icons/diagram-3.svg' %}" alt="" width="24" height="24"/>
                     　画像処理</a>
                 <a href="{% url 'plot:plot_index' %}" class="list-group-item list-group-item-secondary">
@@ -61,8 +62,8 @@
                 <a href="#" class="list-group-item list-group-item-secondary">
                     <img src="{% static 'bootstrap-icons/icons/envelope.svg' %}" alt="" width="24" height="24"/>
                     　Lambda</a>
-                <a role="button" class="btn  btn-sm btn-outline-primary" href="/auth/login/">ログイン</a>
-                <a role="button" class="btn  btn-sm btn-outline-secondary" href="/auth/logout/">ログアウト</a>
+                <a role="button" class="btn  btn-sm btn-outline-primary" href="{% url 'account_login' %}">ログイン</a>
+                <a role="button" class="btn  btn-sm btn-outline-secondary" href="/accounts/logout/">ログアウト</a>
             </div>
             <hr>
             <div>
@@ -109,7 +110,7 @@
 <div class="border g-2">
     <div class="border">
         <div class="row justify-content-md-center">
-            &copy2020 Happy IT Semi
+            &copy2020 Toshio Nakashima
         </div>
     </div>
 </div>
