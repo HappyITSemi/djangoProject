@@ -33,10 +33,10 @@
         <div class="col-lg-2 order-1">
             <div class="list-group">
                 <ul class="list-group nav" id="menu-all_todo" role="tablist">
-                    <li class="list-group-item list-group-item-primary">基本</li>
+                    <li class="list-group-item list-group-item-dark">Web</li>
                 </ul>
                 {% block todo_menu %}
-                    <a href="{% url 'todo:todo_index' %}" class="list-group-item list-group-item-outline-info active">
+                    <a href="{% url 'todo:todo_index' %}" class="list-group-item list-group-item-success">
                         <img src="{% static 'bootstrap-icons/icons/layout-text-window-reverse.svg' %}" alt="" width="24"
                              height="24"/>
                         　Todo CRUD
@@ -53,10 +53,10 @@
                     <img src="{% static 'bootstrap-icons/icons/diagram-3.svg' %}" alt="" width="24" height="24"/>
                     　画像処理</a>
 
-                <a href="#" class="list-group-item list-group-item-secondary">
+                <a href="#" class="list-group-item list-group-item-action">
                     <img src="{% static 'bootstrap-icons/icons/person-plus.svg' %}" alt="" width="24" height="24"/>
                     　Rest-API</a>
-                <a href="#" class="list-group-item list-group-item-secondary">
+                <a href="#" class="list-group-item list-group-item-action">
                     <img src="{% static 'bootstrap-icons/icons/envelope.svg' %}" alt="" width="24" height="24"/>
                     　Lambda</a>
                 <a role="button" class="btn  btn-sm btn-outline-primary" href="/accounts/login/">ログイン</a>
@@ -66,13 +66,13 @@
             <hr>
             <div>
                 <ul class="list-group nav" id="menu-all" role="tablist">
-                    <li class="list-group-item list-group-item-dark">発展</li>
-                    <li class="list-group-item list-group-item-secondary">可視化</li>
-                    <li class="list-group-item list-group-item-secondary">回帰</li>
-                    <li class="list-group-item list-group-item-secondary">分類</li>
-                    <li class="list-group-item list-group-item-secondary">解析</li>
-                    <li class="list-group-item list-group-item-secondary">NN</li>
-                    <li class="list-group-item list-group-item-secondary">GA</li>
+                    <li class="list-group-item list-group-item-dark">機械学習・DL</li>
+                    <li class="list-group-item list-group-item-action">可視化</li>
+                    <li class="list-group-item list-group-item-action">回帰</li>
+                    <li class="list-group-item list-group-item-action">分類</li>
+                    <li class="list-group-item list-group-item-action">解析</li>
+                    <li class="list-group-item list-group-item-action">NN</li>
+                    <li class="list-group-item list-group-item-action">GA</li>
                 </ul>
             </div>
 
