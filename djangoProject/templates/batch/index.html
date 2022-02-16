@@ -3,37 +3,58 @@
 {% block title %}Batch説明{% endblock %}
 {% block content %}
     <div class="col-lg-10 border order-2">
-    <br/>
+        <br/>
+        <form action={% url 'batch:batch_index' %} method="get">
+            {% csrf_token%}
+        <table class="table table-striped table-hover table-bordered">
+            <thead>
+            <tr>
+                <th>No.</th>
+                <th>バッチ・コマンド名</th>
+                <th>説明</th>
+                <th>スケジュール</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>1</td>
+                <td><button type="submit" name="button_1" value="ボタン1" class="btn  btn-sm btn-outline-primary">
+                ボタン１</button>
+                    <a role="button" class="btn  btn-sm btn-outline-primary"
+                       type="submit"
+                       href="{% url 'batch:batch_index' %}">
+                    Batchコマンド</a></td>
+                <td><a role="button" class="btn  btn-sm btn-outline-success"
+                       href="{% url 'batch:batch_index' %}">説明</a>
+                    Python - Django - Batchコマンド
+                </td>
+                <td>cron</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td><a role="button" class="btn  btn-sm btn-outline-primary"
+                       href="{% url 'batch:batch_index' %}">
+                    Publish-Subscribe-Model(push/pop)</a></td>
+                <td><a role="button" class="btn  btn-sm btn-outline-success"
+                       href="{% url 'batch:batch_index' %}">説明</a>
+                    Publish-Subscribe-worker
+                </td>
+                <td>cron</td>
+            </tr>
+            </tbody>
+        </table>
+        </form>
+        <br/>
 
-    <table class="table table-striped table-hover table-bordered">
-        <thead>
-        <tr>
-            <th>No.</th>
-            <th>バッチ・コマンド名</th>
-            <th>説明</th>
-            <th>内容</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <td>1</td>
-            <td>2</td>
-            <td>3</td>
-            <td>4</td>
-        </tr>
-        </tbody>
-    </table>
-    <br/>
+        <div class="row g-2">
+            <div class="col col-lg-6 border order-3">
+                {{ param.return_text }}
+            </div>
 
-    <div class="row g-2">
-        <div class="col col-lg-6 border order-3">
-            aaaa
+            <div class="col col-lg-6 border order-4">
+                bbb
+            </div>
         </div>
-
-        <div class="col col-lg-6 border order-4">
-            bbb
-        </div>
-    </div>
 
     </div>
 {% endblock %}

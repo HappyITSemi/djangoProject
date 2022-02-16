@@ -47,14 +47,14 @@
                     </a>
                 {% endblock %}
 
-                {% block sns_menu %}
-                    <a href="#" class="list-group-item list-group-item-action">
-                        <img src="{% static 'bootstrap-icons/icons/shop.svg' %}" alt="" width="24" height="24"/>
+                {% block batch_menu %}
+                    <a href="{% url 'batch:batch_index' %}" class="list-group-item list-group-item-action">
+                        <img src="{% static 'bootstrap-icons/icons/diagram-3.svg' %}" alt="" width="24" height="24"/>
                         　Batch</a>
                 {% endblock %}
 
                 <a href="{% url 'plot:plot_index' %}" class="list-group-item list-group-item-action">
-                    <img src="{% static 'bootstrap-icons/icons/diagram-3.svg' %}" alt="" width="24" height="24"/>
+                    <img src="{% static 'bootstrap-icons/icons/shop.svg' %}" alt="" width="24" height="24"/>
                     　画像処理</a>
                 <a href="{% url 'plot:plot_index' %}" class="list-group-item list-group-item-secondary">
                     <img src="{% static 'bootstrap-icons/icons/person-plus.svg' %}" alt="" width="24" height="24"/>
