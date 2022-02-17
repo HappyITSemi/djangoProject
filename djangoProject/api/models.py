@@ -8,9 +8,9 @@ class Author(models.Model):
     # """著者モデル"""
     class Meta:
         db_table = 'author'
-        id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-        name = models.CharField(verbose_name='著者名', max_length=20)
-        created_at = models.DateTimeField(default=timezone.now)
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    name = models.CharField(verbose_name='著者名', max_length=20)
+    created_at = models.DateTimeField(default=timezone.now)
 
 
 class Publisher(models.Model):

@@ -33,8 +33,8 @@ INSTALLED_APPS = [
     'batch.apps.BatchConfig',
     'todo.apps.TodoConfig',
     'plot.apps.PlotConfig',
-    'v1.apps.V1Config',
 
+    'api.apps.ApiConfig',
     'allauth',
     'allauth.account',
     'social_django',
