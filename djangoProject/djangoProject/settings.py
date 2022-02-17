@@ -39,6 +39,13 @@ INSTALLED_APPS = [
     'allauth.account',
     'social_django',
     'allauth.socialaccount',
+
+    'rest_framework',
+    # 'rest_framework.authtoken',
+    # 'rest_auth',
+    # 'rest_auth.registration',
+
+    # 'allauth.socialaccount.providers.google',
 ]
 
 MIDDLEWARE = [
