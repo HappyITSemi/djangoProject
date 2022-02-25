@@ -13,6 +13,7 @@ class BookSerializer(serializers.ModelSerializer):
     class Meta:  # 対象のモデルクラスを指定
         model = Book  # 利⽤しないモデルのフィールドを
         fields = ['id', 'title', 'price']
+        # fields = "__ALL__"
         exclude = ['created_at']
 
 

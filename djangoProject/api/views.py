@@ -1,9 +1,9 @@
-from django.shortcuts import render
+#
 from django.shortcuts import get_object_or_404
+from rest_framework import generics
 from rest_framework import status, views
 from rest_framework.response import Response
-from .models import Book
-from .serializers import BookSerializer
+from django_filters import rest_framework as filters
 
 
 class BookListCreateAPIView(views.APIView):
@@ -61,3 +61,22 @@ class BookRetrieveUpdateDestroyAPIView(views.APIView):
         # モデルオブジェクトを削除
         book.delete()  # レスポンスオブジェクトを返す
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+from rest_framework import viewsets
+from rest_framework.permissions import IsAuthenticatedOrReadOnly
+from .models import Book
+from .serializers import BookSerializer
+
+
+class BookViewSet(viewsets.ModelViewSet):
+    queryset = Book.objects.all()
+
+    serializer_class = BookSerializer
+    permission_classes = [IsAuthenticatedOrReadOnly]
+
+    class BookListAPIView(generics.ListAPIView):
+        queryset = Book.objects.all()
+        serializer_class = BookSerializer
+        filter_backends = [filters.DjangoFilterBackend]
+
