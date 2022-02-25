@@ -9,6 +9,13 @@ from django.urls import path
 from . import settings
 from .settings import BASE_DIR
 
+from django.urls import path, include
+from rest_framework import routers
+from api import views
+
+router = routers.SimpleRouter()
+router.register('books', views.BookViewSet)
+
 
 def home(request):
     if request.method == 'GET':
@@ -23,6 +30,8 @@ urlpatterns = [
                   path('home/', home, name='home_root'),
                   path('admin/', admin.site.urls),
 
+                  # すべてのアクション （⼀覧・詳細 ・登録・更新・⼀部更新・ 削除） をまとめて追加
+                  path('api/', include(router.urls)),
                   path('todo/', include('todo.urls')),
                   path('plot/', include('plot.urls')),
                   path('batch/', include('batch.urls')),
