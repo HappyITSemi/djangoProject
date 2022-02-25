@@ -26,7 +26,6 @@ urlpatterns = [
                   path('todo/', include('todo.urls')),
                   path('plot/', include('plot.urls')),
                   path('batch/', include('batch.urls')),
-                  path('api/v1/', include('v1.urls')),
                   path('accounts/', include('allauth.urls')),
 
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

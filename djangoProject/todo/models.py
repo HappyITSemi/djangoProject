@@ -1,8 +1,7 @@
 from django.db import models
 from django.utils import timezone
 
-
-# from accounts.models import CustomUser
+from users.models import CustomUser
 
 
 class Category(models.Model):
@@ -29,8 +28,7 @@ class Todo(models.Model):
     created_at = models.DateTimeField(default=timezone.now, verbose_name='登録日時')
     updated_at = models.DateTimeField(default=timezone.now, verbose_name='更新日時')
     category = models.ForeignKey(Category, on_delete=models.CASCADE, default=1, verbose_name='カテゴリー選択')
-
-    # user = models.ForeignKey(CustomUser, verbose_name='ユーザー', on_delete=models.PROTECT, default=1)
+    user = models.ForeignKey(CustomUser, verbose_name='ユーザー', on_delete=models.PROTECT, default=1)
 
     def __str__(self):
         return str(self.name) + '-' + self.category.name

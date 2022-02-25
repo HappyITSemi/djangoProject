@@ -26,6 +26,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'accounts.apps.AccountsConfig',
+    'users.apps.UsersConfig',
     'dashboard.apps.DashboardConfig',
     'django.contrib.sites',
     'django.contrib.redirects',
@@ -158,7 +159,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 #     DEBUG_TOOLBAR_CONFIG = {'SHOW_TOOLBAR_CALLBACK': show_toolbar, }
 
 SITE_ID = 1
-AUTH_USER_MODEL = 'accounts.CustomUser'
+# AUTH_USER_MODEL = 'accounts.CustomUser'
+AUTH_USER_MODEL = 'users.CustomUser'
 
 AUTHENTICATION_BACKENDS = (
     'allauth.account.auth_backends.AuthenticationBackend',  # 一般ユーザー用(メールアドレス認証)

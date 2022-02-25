@@ -1,14 +1,15 @@
 {% extends "base.html" %}
 {% load static %}
-{% block title %}ログイン{% endblock %}
+{% block title %}ログイン123{% endblock %}
 
 {% load i18n %}
 {% load account socialaccount %}
 
-{% block head_title %}<h3>{% trans "Sign In" %}</h3>>{% endblock %}
-<h3>ログインのテスト</h3>
+{% block head_title %}{% trans "Sign In" %}{% endblock %}
+
 {% block content %}
     <div class="col-lg-7 border order-2">
+
         <h1>{% trans "Sign In" %}</h1>
 
         {% get_providers as socialaccount_providers %}
@@ -34,44 +35,16 @@
             <p>{% blocktrans %}If you have not created an account yet, then please
                 <a href="{{ signup_url }}">sign up</a> first.{% endblocktrans %}</p>
         {% endif %}
-        <div class="col-md-4">
-            <div class="login-panel panel panel-default">
-                <form class="login" method="POST" action="{% url 'account_login' %}">
-                    {% csrf_token %}
 
-                    <!-- {{ form.as_p }} -->
-                    <br/><br/>
-                    <form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
-                        {% csrf_token %}
-                        <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
-
-                        <div class="form-floating">
-                            <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-                            <label for="floatingInput">Email address</label>
-                        </div><br/>
-                        <div class="form-floating">
-                            <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
-                            <label for="floatingPassword">Password</label>
-                        </div>
-
-                        <div class="checkbox mb-3">
-                            <label>
-                                <input type="checkbox" value="remember-me"> Remember me
-                            </label>
-                        </div>
-
-                        <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
-                        <p class="mt-5 mb-3 text-muted">&copy; 2017–2021</p>
-                    </form>
-
-                    {% if redirect_field_value %}
-                        <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
-                    {% endif %}
-                    <a class="button secondaryAction"
-                       href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a><br/>
-                    <button class="primaryAction" type="submit">{% trans "Sign In" %}</button>
-                </form>
-            </div>
-        </div>
+        <form class="login" method="POST" action="{% url 'account_login' %}">
+            {% csrf_token %}
+            {{ form.as_p }}
+            {% if redirect_field_value %}
+                <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
+            {% endif %}
+            <a class="button secondaryAction"
+               href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a>
+            <button class="primaryAction" type="submit">{% trans "Sign In" %}</button>
+        </form>
     </div>
 {% endblock %}
