@@ -46,6 +46,8 @@ INSTALLED_APPS = [
     # 'rest_auth',
     # 'rest_auth.registration',
 
+    'django_celery_beat',
+    'django_celery_results',
     # 'allauth.socialaccount.providers.google',
 ]
 
@@ -193,6 +195,25 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'  # ローカル
 LOGIN_REDIRECT_URL = 'home'  # ログイン成功後の遷移先の指定
 ACCOUNT_LOGOUT_REDIRECT_URL = 'home'  # ログアウト成功後の遷移先の指定
 ACCOUNT_LOGOUT_ON_GET = False  # 確認を行わずログアウトする設定
+
+# Celery Configuration Options
+CELERY_TIMEZONE = "Asia/Tokyo"
+CELERY_TASK_TRACK_STARTED = True
+CELERY_TASK_TIME_LIMIT = 30 * 60
+
+# celery setting.
+# CELERY_RESULT_BACKEND = 'django-db'
+# CELERY_CACHE_BACKEND = 'django-cache'
+CELERY_CACHE_BACKEND = 'default'
+
+# django setting.
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.db.DatabaseCache',
+        'LOCATION': 'my_cache_table',
+    }
+}
+
 
 # ロギング設定
 LOGGING = {
