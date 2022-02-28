@@ -48,6 +48,8 @@ INSTALLED_APPS = [
 
     'django_celery_beat',
     'django_celery_results',
+    'task_a.apps.TaskAConfig',
+    'task_b.apps.TaskBConfig',
     # 'allauth.socialaccount.providers.google',
 ]
 
@@ -205,6 +207,10 @@ CELERY_TASK_TIME_LIMIT = 30 * 60
 # CELERY_RESULT_BACKEND = 'django-db'
 # CELERY_CACHE_BACKEND = 'django-cache'
 CELERY_CACHE_BACKEND = 'default'
+
+# RabbitMQ: celeryconfig.py
+CELERY_RESULT_BACKEND = 'rpc://'
+CELERY_RESULT_PERSISTENT = True
 
 # django setting.
 CACHES = {

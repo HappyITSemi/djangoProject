@@ -1,0 +1,8 @@
+# https://mebee.info/2020/04/18/post-9736/
+# データの永続化やバックアップの設定など、網羅的に設定できるの非常に使い勝手がいいです。
+#
+#    GITLAB_BACKUP_SCHEDULE daily 日毎にバックアップ
+#    GITLAB_BACKUP_TIME 1:00 バックアップの時間
+#
+
+http://localhost:10080/
