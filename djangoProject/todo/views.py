@@ -10,10 +10,13 @@ from django.views.generic import DeleteView
 from django.views.generic import DetailView
 from django.views.generic import ListView
 from django.views.generic import UpdateView
+from rest_framework import generics
 
 from .forms import TodoForm
 from .models import Category
 from .models import Todo
+from .serializers import TodoSerializer
+from django_filters import rest_framework as filters
 
 logger = logging.getLogger(__name__)
 
@@ -89,3 +92,10 @@ class TodoDeleteView(DeleteView):
     def delete(self, request, *args, **kwargs):
         messages.success(self.request, "Todoを削除しました。")
         return super().delete(request, *args, **kwargs)
+
+
+class TodoListAPIView(generics.ListAPIView):
+    queryset = Todo.objects.all()
+    serializer_class = TodoSerializer
+    filter_backends = [filters.DjangoFilterBackend]
+

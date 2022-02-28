@@ -15,4 +15,5 @@ urlpatterns = [
     path('update/<int:pk>', views.TodoUpdateView.as_view(), name='todo_update'),
     path('delete/<int:pk>', views.TodoDeleteView.as_view(), name='todo_delete'),
     # url(r'^__debug__/', include(debug_toolbar.urls)),
+    path('list/', views.TodoListAPIView.as_view()),
 ]
