@@ -7,7 +7,6 @@
 # DELETE	https://httpbin.org/delete
 # https://httpbin.org/status/{codes}
 
-import base64
 import json
 import pprint
 
@@ -30,7 +29,7 @@ class Command(BaseCommand):
         }
         self.headers = {
             'Content-Type': 'application/json',
-            'Authorization': self.get_auth(),
+            'Authorization': self.get_auth(self),
         }
         self.url_test_post = 'https://httpbin.org/post'
         self.url_test_get = 'https://httpbin.org/get'
@@ -58,13 +57,3 @@ class Command(BaseCommand):
 
             print('json=', type(res_post.json()['json']))
             print('headers=', type(res_post.json()['headers']))
-
-    def get_auth(self=None):
-        if self == 'test':
-            user = 'dev'
-            password = 'password'
-        else:
-            user = 'production'
-            password = 'password'
-        auth = "Basic " + base64.b64encode('{}:{}'.format(user, password).encode('utf-8')).decode('utf-8')
-        return auth

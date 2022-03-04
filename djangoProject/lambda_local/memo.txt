@@ -1,0 +1,10 @@
+# macにsamのインストール
+# brew tap aws/tap
+# brew install aws-sam-cli
+# $> sam init
+# $> sam build
+
+# aws-cli
+# aws configure
+# aws sts get-caller-identity
+#
